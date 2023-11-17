@@ -1,11 +1,18 @@
-import React from 'react'
+import { StrictMode, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
+import { store } from './app/model/store'
+import { router } from './routes/router'
+import { Provider } from 'react-redux'
+import { RouterProvider } from 'react-router-dom'
 
-import App from './App.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StrictMode>
+    <Provider store={store}>
+        <Suspense fallback={<h2>Loading ....</h2>}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </Provider>
+  </StrictMode>,
 )

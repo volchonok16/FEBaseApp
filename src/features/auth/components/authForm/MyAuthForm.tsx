@@ -32,7 +32,7 @@ export const AuthForm: FC = () => {
           localStorage.setItem('token', res.accessToken)
         })
     } catch (err) {
-      console.log('LoginError:', err)
+      console.error('LoginError:', err)
     }
   }
 

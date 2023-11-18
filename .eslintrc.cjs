@@ -1,20 +1,20 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2020: true
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    "plugin:import/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:react/jsx-runtime",
-    "prettier"
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'prettier'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite-env.d.ts', 'main.tsx'],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', "@typescript-eslint", "check-file", "import", "prettier"],
+  plugins: ['react-refresh', 'prettier', 'import'],
   rules: {
     'prettier/prettier': 2,
     'react-refresh/only-export-components': [

@@ -1,14 +1,12 @@
+import eyeClose from 'assets/eyeCloseIcon.svg'
+import eyeOpen from 'assets/eyeOpenIcon.svg'
+import { useLoginMutation } from 'features/auth/api/api'
+import { LoginDataType } from 'features/auth/api/types'
 import { useState, FC } from 'react'
 
 import { useForm } from 'react-hook-form'
 
-import { useLoginMutation } from './../../../../features/auth/api/api'
-import { LoginDataType } from './../../../../features/auth/api/types'
-
 import css from './authForm.module.scss'
-
-import eyeClose from '../../../../assets/eyeCloseIcon.svg'
-import eyeOpen from '../../../../assets/eyeOpenIcon.svg'
 
 export const AuthForm: FC = () => {
   const [isShowPassword, setIsShowPassword] = useState(false)

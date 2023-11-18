@@ -1,6 +1,4 @@
-@import "src/common/styles/variables";
-@import "src/common/styles/mixins";
-
+@import "~/common/styles";
 
 .authLayout__wrapper {
   background-color: $auth_form_background_color;

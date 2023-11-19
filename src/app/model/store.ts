@@ -1,14 +1,15 @@
-import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 
 import { authApi } from './../../features/auth/api/api'
+import { errorLoggerMiddleware } from './middlewares/errorLoggerMiddleware'
 
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware, errorLoggerMiddleware),
 })
 
 setupListeners(store.dispatch)

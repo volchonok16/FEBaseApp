@@ -26,9 +26,9 @@
       "typescript": {}
     }    
   },
-  "ignorePatterns": ["react-app-env.d.ts"],
+  "ignorePatterns": ["react-app-env.d.ts", "index.tsx"],
   "rules": {
-    "react/display-name": "off",    
+    "react/display-name": "off",
     "prettier/prettier": 2,
     "import/order": [
       2,
@@ -54,6 +54,12 @@
       {
         "**/*.{jsx,tsx}": "PASCAL_CASE",
         "**/*.{js,ts,css,scss}": "CAMEL_CASE"
+      }
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/**/": "CAMEL_CASE"
       }
     ]
   }

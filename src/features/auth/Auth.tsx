@@ -3,6 +3,8 @@
 import css from './auth.module.scss'
 import { AuthForm } from './components/authForm/MyAuthForm'
 
+import ErrorBoundary from '../../common/components/ErrorBoundary'
+
 export const AuthLayout = () => {
   // const isLoggedIn = useAppSelector(isLogged)
 
@@ -12,7 +14,9 @@ export const AuthLayout = () => {
 
   return (
     <section className={css.authLayout__wrapper}>
-      <AuthForm />
+      <ErrorBoundary>
+        <AuthForm />
+      </ErrorBoundary>
     </section>
   )
 }

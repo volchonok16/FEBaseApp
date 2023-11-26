@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const signInSchema = z.object({
-  username: z.string().email('Адрес не валидный').trim(),
+  email: z.string().email('Адрес не валидный').trim(),
   password: z
     .string()
     .trim()
@@ -10,7 +10,8 @@ export const signInSchema = z.object({
     .regex(
       /^[A-Za-z0-9!"$%&'()+,-./:;<=>?@[\]^_{}|~`]+$/,
       'Пароль может состоять только из латинских букв и (!"$%&\'()+,-./:;<=>?@[]^_{|}~`) символов',
-    ),
+    )
+    .optional(),
 })
 
-export type SignInData = z.infer<typeof signInSchema>
+export type SignInDataType = z.infer<typeof signInSchema>

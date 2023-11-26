@@ -13,8 +13,7 @@ export default class ErrorBoundary extends Component<PropsType, StateType> {
     hasError: false,
   }
 
-  /* eslint-disable */ // 'error' is defined but never used  @typescript-eslint/no-unused-vars
-  public static getDerivedStateFromError(error: Error): StateType {
+  public static getDerivedStateFromError(): StateType {
     // Обновляем состояние для отображения резервного контента при следующем рендеринге
     return { hasError: true }
   }

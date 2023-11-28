@@ -38,8 +38,6 @@ export const AuthForm: FC = () => {
             localStorage.setItem('token', res.accessToken)
           })
       } else {
-        setIsShowPasswordField(true)
-
         await signUp(data)
           .unwrap()
           .then((res) => {

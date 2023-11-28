@@ -81,6 +81,10 @@
     .authForm__input_message {        
       @include text(12px, 16px, 500, $error_message_color);      
     }
+    
+    .authForm__password_text {
+      width: 416px;
+    }
   }
 
 

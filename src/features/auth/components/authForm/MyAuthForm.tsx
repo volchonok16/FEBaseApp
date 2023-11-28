@@ -8,7 +8,10 @@ import css from './authForm.module.scss'
 
 import eyeClose from 'assets/eyeCloseIcon.svg'
 import eyeOpen from 'assets/eyeOpenIcon.svg'
-import { useLoginMutation } from 'features/auth/api/api'
+import {
+  useLazyLoginYandexQuery,
+  useLoginMutation,
+} from 'features/auth/api/api'
 import { LoginResponseDataType } from 'features/auth/api/types'
 import { signInSchema, SignInData } from 'features/auth/validation'
 
@@ -16,6 +19,8 @@ export const AuthForm: FC = () => {
   const [isShowPassword, setIsShowPassword] = useState(false)
 
   const [login, { isLoading, isError: isAuthError }] = useLoginMutation()
+  const [yandexLogin, { isLoading: yandexLoginLoading }] =
+    useLazyLoginYandexQuery()
 
   const {
     register,
@@ -38,6 +43,14 @@ export const AuthForm: FC = () => {
     }
   }
 
+  const handleYandexAuth = async () => {
+    try {
+      await yandexLogin()
+    } catch (err) {
+      console.error('LoginError:', err)
+    }
+  }
+
   return (
     <section>
       <form
@@ -47,6 +60,7 @@ export const AuthForm: FC = () => {
         <h3 className={css.authForm__title}>Авторизация</h3>
 
         <div className={css.authForm__inputBlock_wrapper}>
+          <div onClick={handleYandexAuth}>Яндекс</div>
           <div className={css.authForm__input_wrapper}>
             <input
               className={
@@ -123,7 +137,7 @@ export const AuthForm: FC = () => {
         >
           ВХОД
         </button>
-        {isLoading && <div>Загрузка ...</div>}
+        {(isLoading || yandexLoginLoading) && <div>Загрузка ...</div>}
       </form>
     </section>
   )

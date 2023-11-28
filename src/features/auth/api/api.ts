@@ -32,6 +32,15 @@ export const authApi = createApi({
         }
       },
     }),
+    //  вход в приложение через Яндекс
+    loginYandex: builder.query<unknown, void>({
+      query: () => {
+        return {
+          method: 'GET',
+          url: `auth/yandex/signin`,
+        }
+      },
+    }),
     // // выход из приложения
     // logout: builder.mutation<unknown, void>({
     //   query: () => {
@@ -54,4 +63,4 @@ export const authApi = createApi({
   }),
 })
 
-export const { useLoginMutation } = authApi
+export const { useLoginMutation, useLazyLoginYandexQuery } = authApi

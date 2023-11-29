@@ -4,13 +4,15 @@ import { useState, FC } from 'react'
 
 import { useForm } from 'react-hook-form'
 
+import { z } from 'zod'
+
 import css from './authForm.module.scss'
 
 import eyeClose from 'assets/eyeCloseIcon.svg'
 import eyeOpen from 'assets/eyeOpenIcon.svg'
 import { useLoginMutation, useSignUpMutation } from 'features/auth/api/api'
 import { LoginDataType, LoginResponseDataType } from 'features/auth/api/types'
-import { signInSchema, SignInDataType } from 'features/auth/validation'
+import { signInSchema } from 'features/auth/validation'
 
 export const AuthForm: FC = () => {
   const [isShowPassword, setIsShowPassword] = useState(false)
@@ -148,3 +150,5 @@ export const AuthForm: FC = () => {
     </section>
   )
 }
+
+type SignInDataType = z.infer<typeof signInSchema>

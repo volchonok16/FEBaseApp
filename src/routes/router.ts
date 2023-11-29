@@ -5,7 +5,7 @@ import { App } from './../app/MyApp'
 import { AuthLayout } from './../features/auth/Auth'
 
 import { ErrorPage } from './errorPage/ErrorPage'
-import { AUTH, MAIN_PAGE, YANDEX_AUTH } from './paths'
+import { AUTH, MAIN_PAGE, USER_PROFILE } from './paths'
 
 import { YandexAuth } from 'features/auth/components/yandexAuth/YandexAuth'
 
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
     Component: AuthLayout,
   },
   {
-    path: YANDEX_AUTH,
+    path: USER_PROFILE,
     Component: YandexAuth,
   },
 ])

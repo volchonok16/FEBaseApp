@@ -10,8 +10,8 @@ import { SignInData } from 'features/auth/validation'
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    // baseUrl: 'http://adjnatec.ru:4001/api',
-    baseUrl: 'https://4e977b58a9d176848516ced5455ade93.serveo.net',
+    baseUrl: 'http://adjnatec.ru:4300',
+    // baseUrl: 'https://4e977b58a9d176848516ced5455ade93.serveo.net',
     credentials: 'include',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token')

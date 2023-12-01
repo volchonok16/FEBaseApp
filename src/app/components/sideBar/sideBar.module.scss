@@ -1,0 +1,47 @@
+@import "src/common/styles/variables";
+@import "src/common/styles/mixins";
+
+.sideBar_wrapper {
+    width: 284px;
+    padding: 24px;
+
+    position:relative;
+
+    border-radius: 20px;
+    background-color: $elements_inner_background_color;
+
+    .logo {
+        @include text(30px, 42px, bolder, #78B7EF);
+        background: linear-gradient(to right, #50D3BB, #78B7EF);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .name {
+        margin-bottom: 88px;
+        @include text(20px, 24px);
+    }
+
+    .logout_wrapper {
+        @include display(row, 8px);
+        padding-left: 17px;
+        padding-bottom: 40px;
+        // align-self: flex-end;
+
+        position: absolute;
+        bottom: 0%;
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .logout_text {
+            @include text(16px, 19px);
+            display: flex;
+            align-items: center;
+        }
+    
+    }
+}

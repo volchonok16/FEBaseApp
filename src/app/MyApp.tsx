@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom'
 
 import css from './app.module.scss'
 
-// import { AUTH } from '../routes/paths'
+import { SideBar } from 'app/components/sideBar/SideBar'
 
-import { SideMenu } from 'app/components/sideMenu/SideMenu'
+// import { AUTH } from '../routes/paths'
 
 export const App = () => {
   // const isToken = getToken()
@@ -17,7 +17,7 @@ export const App = () => {
 
   return (
     <div className={css.app__wrapper}>
-      <SideMenu />
+      <SideBar />
       <main>
         <Outlet />
       </main>

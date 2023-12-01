@@ -1,0 +1,16 @@
+@import "src/common/styles/variables";
+@import "src/common/styles/mixins";
+
+.item_wrapper {
+    @include display(row, 5px);
+    padding: 10px;
+
+    img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .title {
+        @include text(16px, 19px);
+    }
+}

@@ -1,6 +1,6 @@
 @import "./variables";
 
-@mixin text($fontSize, $lineHeight, $fontWeight, $color) {
+@mixin text($fontSize, $lineHeight, $fontWeight:normal, $color:$text_color) {
   font-size: $fontSize;
   line-height: $lineHeight;
   font-weight: $fontWeight;

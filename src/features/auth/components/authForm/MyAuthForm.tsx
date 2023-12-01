@@ -12,7 +12,7 @@ import eyeClose from 'assets/eyeCloseIcon.svg'
 import eyeOpen from 'assets/eyeOpenIcon.svg'
 import { useLoginMutation, useSignUpMutation } from 'features/auth/api/api'
 import { LoginDataType, LoginResponseDataType } from 'features/auth/api/types'
-import { signInSchema } from 'features/auth/validation'
+import { signInSchema } from 'features/auth/components/authForm/validation'
 
 export const AuthForm: FC = () => {
   const [isShowPassword, setIsShowPassword] = useState(false)

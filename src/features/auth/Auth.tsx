@@ -13,10 +13,18 @@ export const AuthLayout = () => {
   // }
 
   return (
-    <section className={css.authLayout__wrapper}>
-      <ErrorBoundary>
-        <AuthForm />
-      </ErrorBoundary>
-    </section>
+    <div className="container py-4 px-3 mx-auto">
+      <section className={css.authLayout__wrapper}>
+        <ErrorBoundary>
+          <AuthForm />
+        </ErrorBoundary>
+        <div>
+          <h1>Hello, Bootstrap and Webpack!</h1>
+          <div className="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            Primary button
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

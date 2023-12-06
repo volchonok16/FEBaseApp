@@ -1,3 +1,4 @@
+import 'common/styles/index.scss'
 import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
 

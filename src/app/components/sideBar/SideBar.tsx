@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import css from './sideBar.module.scss'
 
 // import { Menu } from 'app/components/menu/Menu'
+import arrowLeft from 'assets/arrow-left.svg'
+import arrowRight from 'assets/arrow-right.svg'
 import logout from 'assets/logout.svg'
 import profile from 'assets/profile.svg'
 import services from 'assets/services.svg'
@@ -57,9 +59,7 @@ export const SideBar: FC = () => {
   return (
     <>
       <div className="col-auto">
-        <nav
-          className={`d-flex flex-column align-items-stretch p-3 ${css.wrapper} bg-white h-100`}
-        >
+        <nav className="d-flex flex-column align-items-stretch p-3 rounded-4 bg-white h-100">
           <div
             role="button"
             className="d-flex flex-column align-items-start h-25 me-md-auto text-black text-decoration-none"
@@ -120,8 +120,10 @@ export const SideBar: FC = () => {
           </div>
         </nav>
       </div>
-      <div className="col-auto">
-        <button onClick={hideMenu}>Menu</button>
+      <div className={css.arrow_wrapper}>
+        <div className={css.arrow}>
+          <img src={isMenu ? arrowLeft : arrowRight} onClick={hideMenu} />
+        </div>
       </div>
     </>
   )

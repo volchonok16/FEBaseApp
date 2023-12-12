@@ -26,13 +26,41 @@
         height: 1.5rem;
     }
 
-    .wrapper {
-        @include border-radius(1.2rem);  
+    .arrow_wrapper {
+        position: relative;
+        width: 0;
+    }
+    .arrow {
+        align-self: flex-end;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1.5rem;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        left: -1.5rem;
+        top: calc(50vh - 1.5rem);
+
+        img {
+            width: 2rem;
+            height: 2rem;
+            object-fit: cover;
+            border: 1px solid $gray-200;
+            border-radius: 1rem; 
+        }
+        
+        img:hover {
+            background-color: $gray-200;
+        }
     }
 
-    .nav-pills > li > div.active{
-        color: red;
-    }
+    // .wrapper {
+    //     @include border-radius(1.2rem);  
+    // }
+
 
     // .logout_wrapper {
     //     @include display(row, 8px);

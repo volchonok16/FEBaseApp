@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import css from './sideBar.module.scss'
 
@@ -32,12 +33,15 @@ export const SideBar: FC = () => {
   const [isMenu, setIsMenu] = useState(true)
   const [activeItem, setActiveItem] = useState<null | number>()
 
+  const navigate = useNavigate()
+
   const hideMenu = () => {
     setIsMenu((prevState) => !prevState)
   }
 
-  const handleActiveItem = (id: number) => {
+  const handleActiveItem = (id: null | number, path: string) => {
     setActiveItem(id)
+    navigate(path)
   }
   // return (
   //   <div className={css.sideBar_wrapper}>
@@ -54,11 +58,11 @@ export const SideBar: FC = () => {
     <>
       <div className="col-auto">
         <nav
-          className={`d-flex flex-column align-items-stretch p-3 ${css.wrapper} bg-light h-100`}
+          className={`d-flex flex-column align-items-stretch p-3 ${css.wrapper} bg-white h-100`}
         >
-          <a
-            href="/"
-            className="d-flex flex-column align-items-start me-md-auto text-black text-decoration-none"
+          <div
+            role="button"
+            className="d-flex flex-column align-items-start h-25 me-md-auto text-black text-decoration-none"
           >
             <span
               className={`${css.logo} mx-1 d-none 
@@ -72,7 +76,7 @@ export const SideBar: FC = () => {
             >
               Личный кабинет
             </span>
-          </a>
+          </div>
           <ul
             className="nav nav-pills flex-grow-1 flex-column align-items-start"
             id="menu"
@@ -81,10 +85,10 @@ export const SideBar: FC = () => {
               <li
                 className="nav-item"
                 key={item.id}
-                onClick={() => handleActiveItem(item.id)}
+                onClick={() => handleActiveItem(item.id, item.path)}
               >
-                <a
-                  href={item.path}
+                <div
+                  role="button"
                   className={`nav-link 
                   ${activeItem === item.id ? 'active' : ''} 
                   align-middle p-1 my-1`}
@@ -97,18 +101,22 @@ export const SideBar: FC = () => {
                   >
                     {item.title}
                   </span>
-                </a>
+                </div>
               </li>
             ))}
           </ul>
 
           <div className="pb-4">
-            <a href="#" className="d-flex text-black text-decoration-none">
+            <div
+              role="button"
+              className="d-flex p-1 my-1 text-black text-decoration-none"
+              onClick={() => handleActiveItem(null, '/')}
+            >
               <img src={logout} alt="logout" className={css.icon} />
               <span className={'mx-2 d-none ' + (isMenu ? 'd-lg-inline' : '')}>
                 Выход
               </span>
-            </a>
+            </div>
           </div>
         </nav>
       </div>

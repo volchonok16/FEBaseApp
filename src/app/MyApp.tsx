@@ -19,7 +19,7 @@ export const App = () => {
     <div className="container-fluid p-3 min-vw-100 vh-100 bg-light">
       <div className="row flex-nowrap h-100 g-0">
         <SideBar />
-        <main className="col py-3">
+        <main className="col">
           <Outlet />
         </main>
       </div>

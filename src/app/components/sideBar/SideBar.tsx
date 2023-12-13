@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 import css from './sideBar.module.scss'
 
-// import { Menu } from 'app/components/menu/Menu'
 import arrowLeft from 'assets/arrow-left.svg'
-import arrowRight from 'assets/arrow-right.svg'
+import arrowRight from 'assets/arrow-right2.svg'
 import logout from 'assets/logout.svg'
 import profile from 'assets/profile.svg'
 import services from 'assets/services.svg'
@@ -45,17 +44,7 @@ export const SideBar: FC = () => {
     setActiveItem(id)
     navigate(path)
   }
-  // return (
-  //   <div className={css.sideBar_wrapper}>
-  //     <div className={css.logo}>АТП-Онлайн</div>
-  //     <div className={css.name}>Личный кабинет</div>
-  //     <Menu />
-  //     <div className={css.logout_wrapper}>
-  //       <img src={logout} />
-  //       <div className={css.logout_text}>Выход</div>
-  //     </div>
-  //   </div>
-  // )
+
   return (
     <>
       <div className="col-auto">

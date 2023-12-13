@@ -1,5 +1,58 @@
 import { FC } from 'react'
 
+import css from './ownerProfile.module.scss'
+
+import avatar from 'assets/avatar.svg'
+import { ContactItem } from 'features/ownerProfile/components/ContactItem'
+
 export const OwnerProfile: FC = () => {
-  return <div>Owner Profile</div>
+  const user = {
+    name: 'Пакостин Степан Степанович',
+    company: 'Дет. сад “Злая выхухоль”',
+    position: 'Вредитель',
+    status: 'Online',
+    tel: '+7-678-34-56',
+    email: 'first@mail.com',
+    password: '*******',
+  }
+  return (
+    <div className="container-fluid p-0 h-100">
+      <div className="row h-100 g-0">
+        <div className="col-8">
+          <div className="d-flex flex-column align-items-stretch p-5 mx-3 rounded-4 bg-white h-100">
+            <div className="d-flex flex-row">
+              <div className="d-flex flex-column align-items-center">
+                <img className={css.avatar} src={avatar} alt="avatar" />
+                <span className="p-1">{user.status}</span>
+              </div>
+              <div className="d-flex flex-column ms-5">
+                <p>
+                  <strong>{user.name}</strong>
+                </p>
+                <p>Организация: {user.company}</p>
+                <p>Должность: {user.position}</p>
+              </div>
+            </div>
+            <div className="d-flex flex-row flex-wrap">
+              <div className="d-flex flex-column align-items-start flex-grow-1 me-2">
+                <div className="my-3 ps-3">Данные аккаунта</div>
+                <ContactItem title={'Номер телефона'} data={user.tel} />
+                <ContactItem title={'Почта'} data={user.email} />
+              </div>
+              <div className="d-flex flex-column flex-grow-1 me-2">
+                <div className="my-3 ps-3">Способы входа</div>
+                <ContactItem title={'Пароль'} data={user.password} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-4">
+          <div className="d-flex flex-column align-items-stretch h-100">
+            <div className="h-25 p-3 mb-3 rounded-4 bg-white">Sale</div>
+            <div className="flex-grow-1 p-3 rounded-4 bg-white">Company</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }

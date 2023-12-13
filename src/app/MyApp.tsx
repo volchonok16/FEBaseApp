@@ -16,10 +16,10 @@ export const App = () => {
   // }
 
   return (
-    <div className="container-fluid p-3 min-vw-100 vh-100 bg-light">
+    <div className="container-fluid p-3 min-vw-100 vh-100 bg-light overflow-auto">
       <div className="row flex-nowrap h-100 g-0">
         <SideBar />
-        <main className="col">
+        <main className="col overflow-auto">
           <Outlet />
         </main>
       </div>

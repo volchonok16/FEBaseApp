@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import css from './sideBar.module.scss'
 
 import arrowLeft from 'assets/arrow-left.svg'
-import arrowRight from 'assets/arrow-right2.svg'
+import arrowRight from 'assets/arrow-right.svg'
 import logout from 'assets/logout.svg'
 import profile from 'assets/profile.svg'
 import services from 'assets/services.svg'

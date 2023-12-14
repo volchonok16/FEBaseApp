@@ -18,19 +18,6 @@ export const AuthLayout = () => {
         <ErrorBoundary>
           <AuthForm />
         </ErrorBoundary>
-        <div data-bs-theme="blue">
-          <h1>Hello, Bootstrap and Webpack!</h1>
-          <div className="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-            Primary button
-          </div>
-          <button
-            type="button"
-            className="btn btn-secondary
-          "
-          >
-            Left
-          </button>
-        </div>
       </section>
     </div>
   )

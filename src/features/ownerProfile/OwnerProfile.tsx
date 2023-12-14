@@ -7,6 +7,8 @@ import { Modal } from '../../common/components/modal/Modal'
 import avatar from 'assets/avatar.svg'
 import { ContactItem } from 'features/ownerProfile/components/ContactItem'
 
+export type DataType = 'tel' | 'email' | 'password'
+
 export const OwnerProfile: FC = () => {
   const user = {
     name: 'Пакостин Степан Степанович',
@@ -19,9 +21,13 @@ export const OwnerProfile: FC = () => {
   }
 
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editedData, setEditedData] = useState('')
+  const [dataType, setDataType] = useState<DataType>('password')
 
-  const openModal = () => {
+  const openModal = (personalData: string, dataType: DataType) => {
     setIsModalOpen(true)
+    setEditedData(personalData)
+    setDataType(dataType)
   }
 
   const closeModal = () => {
@@ -50,11 +56,15 @@ export const OwnerProfile: FC = () => {
             <ContactItem
               title={'Номер телефона'}
               data={user.tel}
+              personalData="номер телефона"
+              dataType="tel"
               showModal={openModal}
             />
             <ContactItem
               title={'Почта'}
               data={user.email}
+              personalData="адрес почты"
+              dataType="email"
               showModal={openModal}
             />
           </div>
@@ -63,11 +73,19 @@ export const OwnerProfile: FC = () => {
             <ContactItem
               title={'Пароль'}
               data={user.password}
+              personalData="пароль"
+              dataType="password"
               showModal={openModal}
             />
           </div>
         </div>
-        {isModalOpen && <Modal hideModal={closeModal} />}
+        {isModalOpen && (
+          <Modal
+            hideModal={closeModal}
+            personalData={editedData}
+            dataType={dataType}
+          />
+        )}
       </div>
 
       <div className="d-flex flex-column align-items-stretch flex-md-shrink-1 h-100">

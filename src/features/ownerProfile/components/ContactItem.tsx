@@ -2,17 +2,27 @@ import { FC } from 'react'
 
 import css from './contactItem.module.scss'
 
+import { DataType } from '../OwnerProfile'
+
 import arrow from 'assets/arrow-right2.svg'
 
 type PropsType = {
   title: string
   data: string
-  showModal: () => void
+  personalData: string
+  dataType: DataType
+  showModal: (personalData: string, dataType: DataType) => void
 }
 
-export const ContactItem: FC<PropsType> = ({ title, data, showModal }) => {
+export const ContactItem: FC<PropsType> = ({
+  title,
+  data,
+  personalData,
+  dataType,
+  showModal,
+}) => {
   const openModal = () => {
-    showModal()
+    showModal(personalData, dataType)
   }
 
   return (

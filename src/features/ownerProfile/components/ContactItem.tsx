@@ -7,9 +7,14 @@ import arrow from 'assets/arrow-right2.svg'
 type PropsType = {
   title: string
   data: string
+  showModal: () => void
 }
 
-export const ContactItem: FC<PropsType> = ({ title, data }) => {
+export const ContactItem: FC<PropsType> = ({ title, data, showModal }) => {
+  const openModal = () => {
+    showModal()
+  }
+
   return (
     <div className={css.item_wrapper}>
       <div className="d-flex flex-row justify-content-between align-items-center my-2 p-3 border-bottom">
@@ -17,7 +22,7 @@ export const ContactItem: FC<PropsType> = ({ title, data }) => {
           <span>{title}</span>
           <span>{data}</span>
         </div>
-        <img className={css.arrow} src={arrow} />
+        <img className={css.arrow} src={arrow} onClick={openModal} />
       </div>
     </div>
   )

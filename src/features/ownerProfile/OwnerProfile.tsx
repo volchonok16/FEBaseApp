@@ -1,6 +1,8 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
 import css from './ownerProfile.module.scss'
+
+import { Modal } from '../../common/components/modal/Modal'
 
 import avatar from 'assets/avatar.svg'
 import { ContactItem } from 'features/ownerProfile/components/ContactItem'
@@ -15,6 +17,17 @@ export const OwnerProfile: FC = () => {
     email: 'first@mail.com',
     password: '*******',
   }
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
   return (
     <div className="d-flex flex-column flex-md-row h-100">
       <div className="d-flex flex-column align-items-stretch p-5 me-md-3 mb-3 mb-md-0 rounded-4 bg-white h-100 w-100">
@@ -34,14 +47,27 @@ export const OwnerProfile: FC = () => {
         <div className="d-flex flex-row flex-wrap">
           <div className="d-flex flex-column align-items-start flex-grow-1 me-2">
             <div className="my-3 ps-3">Данные аккаунта</div>
-            <ContactItem title={'Номер телефона'} data={user.tel} />
-            <ContactItem title={'Почта'} data={user.email} />
+            <ContactItem
+              title={'Номер телефона'}
+              data={user.tel}
+              showModal={openModal}
+            />
+            <ContactItem
+              title={'Почта'}
+              data={user.email}
+              showModal={openModal}
+            />
           </div>
           <div className="d-flex flex-column flex-grow-1 me-2">
             <div className="my-3 ps-3">Способы входа</div>
-            <ContactItem title={'Пароль'} data={user.password} />
+            <ContactItem
+              title={'Пароль'}
+              data={user.password}
+              showModal={openModal}
+            />
           </div>
         </div>
+        {isModalOpen && <Modal hideModal={closeModal} />}
       </div>
 
       <div className="d-flex flex-column align-items-stretch flex-md-shrink-1 h-100">

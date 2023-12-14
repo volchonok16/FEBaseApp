@@ -1,0 +1,38 @@
+.modal {
+  position: fixed;
+  z-index: 999;
+  width: content-box;
+  height: content-box;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin: 20% 20%;
+  background-color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formField {
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  border-radius: 5px;
+}
+
+.btn {
+  align-self: end;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #7aa0c1;
+}
+
+.arrow {
+  align-self: end;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}

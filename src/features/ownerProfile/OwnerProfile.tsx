@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 
 import css from './ownerProfile.module.scss'
 
-import { Modal } from '../../common/components/modal/Modal'
+import { ModalWindow } from '../../common/components/modal/ModalWindow'
 
 import avatar from 'assets/avatar.svg'
 import { ContactItem } from 'features/ownerProfile/components/ContactItem'
@@ -25,6 +25,7 @@ export const OwnerProfile: FC = () => {
   const [dataType, setDataType] = useState<DataType>('password')
 
   const openModal = (personalData: string, dataType: DataType) => {
+    console.log('Открыть модальное окно')
     setIsModalOpen(true)
     setEditedData(personalData)
     setDataType(dataType)
@@ -79,8 +80,10 @@ export const OwnerProfile: FC = () => {
             />
           </div>
         </div>
+
         {isModalOpen && (
-          <Modal
+          <ModalWindow
+            isModalOpen={isModalOpen}
             hideModal={closeModal}
             personalData={editedData}
             dataType={dataType}

@@ -1,5 +1,9 @@
 @import "src/common/styles/index";
 
+.wrapper {
+    position: static;
+}
+
 .logo {
     @include text(30px, 42px, bolder, #78B7EF);
     background: linear-gradient(to right, #50D3BB, #78B7EF);

@@ -47,8 +47,10 @@ export const SideBar: FC = () => {
 
   return (
     <>
-      <div className="col-auto">
-        <nav className="d-flex flex-column align-items-stretch p-3 rounded-4 bg-white h-100">
+      <div className={`col-auto`}>
+        <nav
+          className={`${css.wrapper} d-flex flex-column align-items-stretch p-3 rounded-4 bg-white h-100`}
+        >
           <div
             role="button"
             className="d-flex flex-column align-items-start h-25 me-md-auto text-black text-decoration-none"

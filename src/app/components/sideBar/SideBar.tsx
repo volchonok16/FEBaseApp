@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 import css from './sideBar.module.scss'
 
-import arrowLeft from 'assets/arrow-left.svg'
-import arrowRight from 'assets/arrow-right.svg'
+// import arrowLeft from 'assets/arrow-left.svg'
+// import arrowRight from 'assets/arrow-right.svg'
 import logout from 'assets/logout.svg'
 import profile from 'assets/profile.svg'
 import services from 'assets/services.svg'
@@ -48,9 +48,7 @@ export const SideBar: FC = () => {
   return (
     <>
       <div className={`col-auto`}>
-        <nav
-          className={`${css.wrapper} d-flex flex-column align-items-stretch p-3 rounded-4 bg-white h-100`}
-        >
+        <nav className="d-flex flex-column align-items-stretch p-3 rounded-4 bg-white h-100">
           <div
             role="button"
             className="d-flex flex-column align-items-start h-25 me-md-auto text-black text-decoration-none"
@@ -68,10 +66,7 @@ export const SideBar: FC = () => {
               Личный кабинет
             </span>
           </div>
-          <ul
-            className="nav nav-pills flex-grow-1 flex-column align-items-start"
-            id="menu"
-          >
+          <ul className="nav nav-pills flex-column align-items-start" id="menu">
             {menuItems.map((item) => (
               <li
                 className="nav-item"
@@ -97,7 +92,7 @@ export const SideBar: FC = () => {
             ))}
           </ul>
 
-          <div className="pb-4">
+          <div className="mt-auto pb-4">
             <div
               role="button"
               className="d-flex p-1 my-1 text-black text-decoration-none"
@@ -112,8 +107,8 @@ export const SideBar: FC = () => {
         </nav>
       </div>
       <div className={css.arrow_wrapper}>
-        <div className={css.arrow}>
-          <img src={isMenu ? arrowLeft : arrowRight} onClick={hideMenu} />
+        <div className={isMenu ? css.curl_inside : css.curl_outside}>
+          <div className={css.curl} onClick={hideMenu}></div>
         </div>
       </div>
     </>

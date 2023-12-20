@@ -1,12 +1,9 @@
-.image {
-  width: 1.5rem;
-  height: 1.5rem;
-  cursor: pointer;
-  align-self: end;
-  margin: 0.5rem;
-}
-
 .btn {
   float: right;
   margin-bottom: 1.5rem;
+}
+
+.closeBtn {
+  float: right;
+  margin: 1rem 1rem 0 0;
 }

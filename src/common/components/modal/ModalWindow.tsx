@@ -1,12 +1,13 @@
 import { FC } from 'react'
-import { Button, Col, Row } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+import CloseButton from 'react-bootstrap/CloseButton'
+import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
-import Image from 'react-bootstrap/Image'
 import Modal from 'react-bootstrap/Modal'
+import Row from 'react-bootstrap/Row'
 
 import css from './ModalWindow.module.css'
 
-import cross from '../../../assets/cross.svg'
 import { DataType } from '../../../features/ownerProfile/OwnerProfile'
 
 type PropsType = {
@@ -39,7 +40,9 @@ export const ModalWindow: FC<PropsType> = ({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Image className={css.image} src={cross} onClick={closeModal} />
+      <Col sm="12">
+        <CloseButton className={css.closeBtn} onClick={closeModal} />
+      </Col>
       <Modal.Body>
         <Form.Label id="contained-modal-title-vcenter" column sm="6">
           <b>Сменить {personalData}</b>

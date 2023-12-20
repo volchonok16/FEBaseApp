@@ -1,12 +1,11 @@
 import { FC } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import Image from 'react-bootstrap/Image'
 import Modal from 'react-bootstrap/Modal'
 
 import css from './ModalWindow.module.css'
 
-import arrow from '../../../assets/arrow-right2.svg'
 import cross from '../../../assets/cross.svg'
 import { DataType } from '../../../features/ownerProfile/OwnerProfile'
 
@@ -46,7 +45,7 @@ export const ModalWindow: FC<PropsType> = ({
           <b>Сменить {personalData}</b>
         </Form.Label>
         <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm="5">
+          <Form.Label column sm="6">
             Введите пароль
           </Form.Label>
           <Col sm="5">
@@ -54,7 +53,7 @@ export const ModalWindow: FC<PropsType> = ({
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm="5">
+          <Form.Label column sm="6">
             Введите новый {personalData}
           </Form.Label>
           <Col sm="5">
@@ -62,14 +61,18 @@ export const ModalWindow: FC<PropsType> = ({
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm="5">
+          <Form.Label column sm="6">
             Подтвердите новый {personalData}
           </Form.Label>
           <Col sm="5">
             <Form.Control type={dataType} />
           </Col>
         </Form.Group>
-        <Image className={css.image} src={arrow} onClick={sendRequest} />
+        <Col sm="11">
+          <Button variant="info" className={css.btn} onClick={sendRequest}>
+            Применить
+          </Button>
+        </Col>
       </Modal.Body>
     </Modal>
   )

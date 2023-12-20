@@ -25,7 +25,6 @@ export const OwnerProfile: FC = () => {
   const [dataType, setDataType] = useState<DataType>('password')
 
   const openModal = (personalData: string, dataType: DataType) => {
-    console.log('Открыть модальное окно')
     setIsModalOpen(true)
     setEditedData(personalData)
     setDataType(dataType)

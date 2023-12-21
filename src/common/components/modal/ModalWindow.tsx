@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import CloseButton from 'react-bootstrap/CloseButton'
 import Col from 'react-bootstrap/Col'
+import InputGroup from 'react-bootstrap/esm/InputGroup'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
@@ -9,6 +10,7 @@ import Row from 'react-bootstrap/Row'
 import css from './ModalWindow.module.css'
 
 import { DataType } from '../../../features/ownerProfile/OwnerProfile'
+import { EyeIcon } from '../eyeIcon/EyeIcon'
 
 type PropsType = {
   isModalOpen: boolean
@@ -23,8 +25,34 @@ export const ModalWindow: FC<PropsType> = ({
   dataType,
   hideModal,
 }) => {
+  const [passwordInputType, setPasswordInputType] = useState<
+    'password' | 'text'
+  >('password')
+
+  const [dataInputType, setDataInputType] = useState<DataType | 'text'>(
+    dataType,
+  )
+
+  const [confirmDataInputType, setConfirmDataInputType] = useState<
+    DataType | 'text'
+  >(dataType)
+
   const closeModal = () => {
     hideModal()
+  }
+
+  const choosePasswordInputType = () => {
+    setPasswordInputType(passwordInputType === 'password' ? 'text' : 'password')
+  }
+
+  const chooseDataInputType = () => {
+    setDataInputType(dataInputType === 'password' ? 'text' : 'password')
+  }
+
+  const chooseConfirmDataInputType = () => {
+    setConfirmDataInputType(
+      confirmDataInputType === 'password' ? 'text' : 'password',
+    )
   }
 
   const sendRequest = () => {
@@ -52,7 +80,12 @@ export const ModalWindow: FC<PropsType> = ({
             Введите пароль
           </Form.Label>
           <Col sm="5">
-            <Form.Control type="password" />
+            <InputGroup>
+              <Form.Control type={passwordInputType} />
+              <InputGroup.Text onClick={choosePasswordInputType}>
+                <EyeIcon inputType={passwordInputType} />
+              </InputGroup.Text>
+            </InputGroup>
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3">
@@ -60,7 +93,14 @@ export const ModalWindow: FC<PropsType> = ({
             Введите новый {personalData}
           </Form.Label>
           <Col sm="5">
-            <Form.Control type={dataType} />
+            <InputGroup>
+              <Form.Control type={dataInputType} />
+              {(dataInputType === 'password' || dataInputType === 'text') && (
+                <InputGroup.Text onClick={chooseDataInputType}>
+                  <EyeIcon inputType={dataInputType} />
+                </InputGroup.Text>
+              )}
+            </InputGroup>
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3">
@@ -68,7 +108,15 @@ export const ModalWindow: FC<PropsType> = ({
             Подтвердите новый {personalData}
           </Form.Label>
           <Col sm="5">
-            <Form.Control type={dataType} />
+            <InputGroup>
+              <Form.Control type={confirmDataInputType} />
+              {(confirmDataInputType === 'password' ||
+                confirmDataInputType === 'text') && (
+                <InputGroup.Text onClick={chooseConfirmDataInputType}>
+                  <EyeIcon inputType={confirmDataInputType} />
+                </InputGroup.Text>
+              )}
+            </InputGroup>
           </Col>
         </Form.Group>
         <Col sm="11">

@@ -7,3 +7,8 @@
   float: right;
   margin: 1rem 1rem 0 0;
 }
+
+.err {
+  color: red;
+  margin: 0.5rem 0 0.5rem 0;
+}

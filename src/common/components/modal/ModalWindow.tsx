@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { FC, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import CloseButton from 'react-bootstrap/CloseButton'
@@ -7,8 +8,10 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
 
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { z } from 'zod'
 
+import { modalFormSchema } from './modalFormValidation'
 import css from './ModalWindow.module.css'
 
 import { DataType } from '../../../features/ownerProfile/OwnerProfile'
@@ -20,6 +23,8 @@ type PropsType = {
   dataType: DataType
   hideModal: () => void
 }
+
+type FormInputType = z.infer<typeof modalFormSchema>
 
 export const ModalWindow: FC<PropsType> = ({
   isModalOpen,
@@ -57,7 +62,14 @@ export const ModalWindow: FC<PropsType> = ({
     )
   }
 
-  const { register, handleSubmit } = useForm<FormInputType>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInputType>({
+    resolver: zodResolver(modalFormSchema),
+  })
+
   const onSubmit: SubmitHandler<FormInputType> = (data) => console.log(data)
 
   return (
@@ -91,6 +103,11 @@ export const ModalWindow: FC<PropsType> = ({
                 </InputGroup.Text>
               </InputGroup>
             </Col>
+            {errors.password && (
+              <Col sm="11" className={css.err}>
+                {errors.password?.message}
+              </Col>
+            )}
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="6">
@@ -100,6 +117,7 @@ export const ModalWindow: FC<PropsType> = ({
               <InputGroup>
                 <Form.Control
                   type={dataInputType}
+                  placeholder={dataType === 'tel' ? '+7-987-654-32-10' : ''}
                   {...register(
                     dataType === 'password'
                       ? 'newPassword'
@@ -115,6 +133,19 @@ export const ModalWindow: FC<PropsType> = ({
                 )}
               </InputGroup>
             </Col>
+            {(dataType === 'password'
+              ? errors.newPassword
+              : dataType === 'tel'
+                ? errors.newTel
+                : errors.newEmail) && (
+              <Col sm="11" className={css.err}>
+                {dataType === 'password'
+                  ? errors.newPassword?.message
+                  : dataType === 'tel'
+                    ? errors.newTel?.message
+                    : errors.newEmail?.message}
+              </Col>
+            )}
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="6">
@@ -124,6 +155,7 @@ export const ModalWindow: FC<PropsType> = ({
               <InputGroup>
                 <Form.Control
                   type={confirmDataInputType}
+                  placeholder={dataType === 'tel' ? '+7-987-654-32-10' : ''}
                   {...register(
                     dataType === 'password'
                       ? 'confirmNewPassword'
@@ -140,6 +172,19 @@ export const ModalWindow: FC<PropsType> = ({
                 )}
               </InputGroup>
             </Col>
+            {(dataType === 'password'
+              ? errors.confirmNewPassword
+              : dataType === 'tel'
+                ? errors.confirmNewTel
+                : errors.confirmNewEmail) && (
+              <Col sm="11" className={css.err}>
+                {dataType === 'password'
+                  ? errors.confirmNewPassword?.message
+                  : dataType === 'tel'
+                    ? errors.confirmNewTel?.message
+                    : errors.confirmNewEmail?.message}
+              </Col>
+            )}
           </Form.Group>
           <Col sm="11">
             <Button className={css.btn} variant="info" type="submit">
@@ -150,14 +195,4 @@ export const ModalWindow: FC<PropsType> = ({
       </Modal.Body>
     </Modal>
   )
-}
-
-type FormInputType = {
-  password: 'password'
-  newPassword?: 'password'
-  confirmNewPassword?: 'password'
-  newTel?: 'tel'
-  confirmNewTel?: 'tel'
-  newEmail?: 'email'
-  confirmNewEmail?: 'email'
 }

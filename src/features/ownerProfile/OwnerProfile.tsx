@@ -17,7 +17,7 @@ export const OwnerProfile: FC = () => {
   }
   return (
     <div className="d-flex flex-column flex-md-row pe-3 h-100">
-      <div className="d-flex flex-column align-items-stretch me-md-3 mb-3 mb-md-0 rounded-4 bg-white w-100">
+      <div className="d-flex flex-column align-items-stretch me-md-3 mb-3 mb-md-0 rounded-4 bg-body w-100">
         <div className={css.wrapper}>
           <div className="d-flex flex-row">
             <div className="d-flex flex-column align-items-center">
@@ -47,8 +47,8 @@ export const OwnerProfile: FC = () => {
       </div>
 
       <div className="d-flex flex-column align-items-stretch flex-md-shrink-1 h-100">
-        <div className="p-3 mb-3 rounded-4 bg-white">Sale</div>
-        <div className="flex-grow-1 p-3 rounded-4 bg-white">
+        <div className="p-3 mb-3 rounded-4 bg-body">Sale</div>
+        <div className="flex-grow-1 p-3 rounded-4 bg-body">
           Company
           <div className={css.info}>Some info</div>
         </div>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 // import { getToken } from './../utils/getToken'
@@ -9,6 +10,7 @@ import { SideBar } from 'app/components/sideBar/SideBar'
 // import { AUTH } from '../routes/paths'
 
 export const App = () => {
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
   // const isToken = getToken()
 
   // if (!isToken) {
@@ -17,11 +19,11 @@ export const App = () => {
 
   return (
     <div
-      data-bs-theme="custom"
-      className="container-fluid p-3 pe-0 min-vw-100 vh-100 text-body bg-body-secondary"
+      data-bs-theme={isDarkTheme ? 'custom' : 'light'}
+      className="container-fluid p-3 pe-0 m in-vw-100 vh-100 text-body bg-body-secondary"
     >
       <div className="row flex-nowrap h-100 g-0">
-        <SideBar />
+        <SideBar setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme} />
         <main className="col overflow-auto">
           <Outlet />
         </main>

@@ -8,7 +8,12 @@ import { ReactComponent as Profile } from 'assets/profile.svg'
 import { ReactComponent as Services } from 'assets/services.svg'
 import { ReactComponent as Settings } from 'assets/settings.svg'
 
-export const SideBar: FC = () => {
+type PropsType = {
+  setIsDarkTheme: (isDarkTheme: boolean) => void
+  isDarkTheme: boolean
+}
+
+export const SideBar: FC<PropsType> = ({ setIsDarkTheme, isDarkTheme }) => {
   const menuItems = [
     {
       id: 1,
@@ -94,13 +99,12 @@ export const SideBar: FC = () => {
             ))}
           </ul>
 
-          <div className="mt-auto pb-4">
+          <div className="mt-auto pb-2">
             <div
               role="button"
               className="d-flex p-1 my-1 text-body text-decoration-none"
               onClick={() => handleActiveItem(null, '/')}
             >
-              {/* <img src={logout} alt="logout" className={css.icon} /> */}
               <div className={css.icon}>
                 <Logout />
               </div>
@@ -108,6 +112,17 @@ export const SideBar: FC = () => {
               <span className={'mx-2 d-none ' + (isMenu ? 'd-lg-inline' : '')}>
                 Выход
               </span>
+            </div>
+          </div>
+          <div className="mt-3 pb-2">
+            <div className={'mx-2 d-none ' + (isMenu ? 'd-lg-inline' : '')}>
+              <input
+                type="checkbox"
+                id="theme"
+                name="theme"
+                onChange={() => setIsDarkTheme(!isDarkTheme)}
+              />
+              <label htmlFor="theme"> Темная тема</label>
             </div>
           </div>
         </nav>

@@ -2,15 +2,15 @@
 @import "node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$body-secondary-bg: #e9ecef;
-// $body-bg-dark: blue;
+@import './_variables.scss';
+
 
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/variables-dark";
 
 // 4. Include any default map overrides here
-$nav-pills-link-active-bg: $body-secondary-bg;
+@import './_map_styles.scss';
 
 @import "./_customThemes.scss"; 
 
@@ -39,4 +39,3 @@ $nav-pills-link-active-bg: $body-secondary-bg;
 
 // 8. Add additional custom code here
 @import './_mixins.scss';
-@import './_variables.scss';

@@ -1,25 +1,18 @@
-// Пример кастомной темы, пока не используется
+// Кастомная темная тема
+
 [data-bs-theme="custom"] {
-  --bs-body-color: #FFFFFF;
-  --bs-body-color-rgb: #{to-rgb(#FFFFFF)};
-  --bs-body-bg: #2C394B;
-  --bs-body-bg-rgb: #{to-rgb(#2C394B)};
-  --bs-secondary-bg: #0A1F32;
-  --bs-secondary-bg-rgb: #{to-rgb(#0A1F32)};
-//     --bs-body-bg-rgb: #{to-rgb($blue)};
-//     --bs-tertiary-bg: #{$blue-600};
-  // .bg-body-secondary {
-  //   --bs-body-secondary-bg: #0A1F32;
-  //   --bs-body-secondary-bg-rgb: #{to-rgb(#0A1F32)};
-  // }
+  --bs-body-color: #{$body-color-custom-dark};
+  --bs-body-color-rgb: #{to-rgb($body-color-custom-dark)};
+  --bs-body-bg: #{$body-bg-custom-dark};
+  --bs-body-bg-rgb: #{to-rgb($body-bg-custom-dark)};
+  --bs-secondary-bg: #{$secondary-bg-custom-dark};
+  --bs-secondary-bg-rgb: #{to-rgb($secondary-bg-custom-dark)};
 
   .nav-pills {
-    --bs-nav-pills-link-active-bg: #344756;
+    --bs-nav-pills-link-active-bg: #{$active-component-bg-custom-dark};
   }
 
-  
-    // --bs-body-bg: #{$body-bg-dark};
-  
+    
 //     .dropdown-menu {
 //       --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
 //       --bs-dropdown-link-active-bg: #{$blue-700};

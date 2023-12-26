@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 
 import css from './sideBar.module.scss'
 
-import { ReactComponent as Logout } from 'assets/logout.svg' // нужно импортировать как компоненту, чтобы менять цвет иконки
-import { ReactComponent as Profile } from 'assets/profile.svg'
-import { ReactComponent as Services } from 'assets/services.svg'
-import { ReactComponent as Settings } from 'assets/settings.svg'
+// import { ReactComponent as Logout } from 'assets/logout.svg' // нужно импортировать как компоненту, чтобы менять цвет иконки
+// import { ReactComponent as Profile } from 'assets/profile.svg'
+// import { ReactComponent as Services } from 'assets/services.svg'
+// import { ReactComponent as Settings } from 'assets/settings.svg'
+import { Icon } from 'common/components/Icon'
 
 type PropsType = {
   setIsDarkTheme: (isDarkTheme: boolean) => void
@@ -50,7 +51,7 @@ export const SideBar: FC<PropsType> = ({ setIsDarkTheme, isDarkTheme }) => {
 
   return (
     <>
-      <div className={`col-auto`}>
+      <div className="col-auto">
         <nav className="d-flex flex-column align-items-stretch p-3 rounded-4 bg-body h-100">
           <div
             role="button"
@@ -83,9 +84,10 @@ export const SideBar: FC<PropsType> = ({ setIsDarkTheme, isDarkTheme }) => {
                   align-middle p-1 my-1`}
                 >
                   <div className={css.icon}>
-                    {item.svg === 'Profile' && <Profile />}
+                    <Icon iconName={item.svg} />
+                    {/* {item.svg === 'Profile' && <Profile />}
                     {item.svg === 'Settings' && <Settings />}
-                    {item.svg === 'Services' && <Services />}
+                    {item.svg === 'Services' && <Services />} */}
                   </div>
                   <span
                     className={
@@ -106,7 +108,7 @@ export const SideBar: FC<PropsType> = ({ setIsDarkTheme, isDarkTheme }) => {
               onClick={() => handleActiveItem(null, '/')}
             >
               <div className={css.icon}>
-                <Logout />
+                <Icon iconName="Logout" />
               </div>
 
               <span className={'mx-2 d-none ' + (isMenu ? 'd-lg-inline' : '')}>

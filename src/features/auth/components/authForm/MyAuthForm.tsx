@@ -64,6 +64,11 @@ export const AuthForm: FC = () => {
     [executeRecaptcha],
   )
 
+  const handleYandexAuth = async () => {
+    window.location.href =
+      'https://oauth.yandex.ru/authorize?response_type=code&redirect_uri=https://4e977b58a9d176848516ced5455ade93.serveo.net/auth/yandex/redirect&client_id=ca01ec9988c7463fae612b252a1ecb13'
+  }
+
   return (
     <section>
       <form
@@ -73,6 +78,7 @@ export const AuthForm: FC = () => {
         <h3 className={css.authForm__title}>Авторизация</h3>
 
         <div className={css.authForm__inputBlock_wrapper}>
+          <div onClick={handleYandexAuth}>Яндекс</div>
           <div className={css.authForm__input_wrapper}>
             <input
               className={

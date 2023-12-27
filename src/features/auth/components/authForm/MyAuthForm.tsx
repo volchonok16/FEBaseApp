@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useState, FC } from 'react'
+import { useState, FC, useCallback } from 'react'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import { useForm } from 'react-hook-form'
 
@@ -22,6 +23,8 @@ export const AuthForm: FC = () => {
     useLoginMutation()
   const [signUp, { isLoading: isSignUpLoading }] = useSignUpMutation()
 
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
   const {
     register,
     handleSubmit,
@@ -31,26 +34,35 @@ export const AuthForm: FC = () => {
     mode: 'onBlur',
   })
 
-  const onClickSubmitHandler = async (data: SignInDataType) => {
-    try {
-      if (data.password) {
-        await login(data as LoginDataType)
-          .unwrap()
-          .then((res: LoginResponseDataType) => {
-            localStorage.setItem('token', res.accessToken)
-          })
-      } else {
-        await signUp(data)
-          .unwrap()
-          .then((res) => {
-            console.log(res?.password)
-            setIsShowPasswordField(true)
-          })
+  const onClickSubmitHandler = useCallback(
+    async (data: SignInDataType) => {
+      if (!executeRecaptcha) {
+        console.log('Execute recaptcha not yet available')
+        return
       }
-    } catch (err) {
-      console.error('LoginError:', err)
-    }
-  }
+      const reCaptchaToken = await executeRecaptcha('auth')
+      console.log('reCaptchaToken: ', reCaptchaToken)
+      try {
+        if (data.password) {
+          await login(data as LoginDataType)
+            .unwrap()
+            .then((res: LoginResponseDataType) => {
+              localStorage.setItem('token', res.accessToken)
+            })
+        } else {
+          await signUp(data)
+            .unwrap()
+            .then((res) => {
+              console.log(res?.password)
+              setIsShowPasswordField(true)
+            })
+        }
+      } catch (err) {
+        console.error('LoginError:', err)
+      }
+    },
+    [executeRecaptcha],
+  )
 
   const handleYandexAuth = async () => {
     window.location.href =

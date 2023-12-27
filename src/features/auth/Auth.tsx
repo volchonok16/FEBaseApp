@@ -15,6 +15,7 @@ export const AuthLayout = () => {
   // }
 
   return (
+    <div className="container py-4 px-3 mx-auto">
     <section className={css.authLayout__wrapper}>
       <ErrorBoundary>
         <GoogleReCaptchaProvider
@@ -24,5 +25,6 @@ export const AuthLayout = () => {
         </GoogleReCaptchaProvider>
       </ErrorBoundary>
     </section>
+    </div>
   )
 }

@@ -13,6 +13,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "bootstrap": "^5.3.2",
     "graphql": "^16.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -57,6 +58,8 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "autoprefixer": "^10.4.16",
+    "css-loader": "^6.8.1",
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -65,6 +68,9 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
     "husky": "^8.0.0",
-    "prettier": "3.1.0"
+    "postcss-loader": "^7.3.3",
+    "prettier": "3.1.0",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3"
   }
 }

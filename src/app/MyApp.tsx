@@ -1,23 +1,33 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 
-import { getToken } from './../utils/getToken'
+// import { getToken } from './../utils/getToken'
 
-import css from './app.module.scss'
+// import css from './app.module.scss'
 
-import { AUTH } from '../routes/paths'
+import { SideBar } from 'app/components/sideBar/SideBar'
+
+// import { AUTH } from '../routes/paths'
 
 export const App = () => {
-  const isToken = getToken()
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
+  // const isToken = getToken()
 
-  if (!isToken) {
-    return <Navigate to={AUTH} />
-  }
+  // if (!isToken) {
+  //   return <Navigate to={AUTH} />
+  // }
 
   return (
-    <div className={css.app__wrapper}>
-      <main>
-        <Outlet />
-      </main>
+    <div
+      data-bs-theme={isDarkTheme ? 'custom' : 'light'}
+      className="container-fluid p-3 pe-0 m in-vw-100 vh-100 text-body bg-body-secondary"
+    >
+      <div className="row flex-nowrap h-100 g-0">
+        <SideBar setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme} />
+        <main className="col overflow-auto">
+          <Outlet />
+        </main>
+      </div>
     </div>
   )
 }

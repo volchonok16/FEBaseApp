@@ -1,0 +1,26 @@
+@import "src/common/styles/index";
+
+.wrapper {
+    padding: 2rem;
+    height: auto;
+}
+
+@include media-breakpoint-up(md) { 
+    .wrapper {
+        overflow: auto;
+        height: 100%;
+    }
+}
+
+.avatar {
+    width: 6.2rem;
+    height: 6.2rem;
+    border: 2px solid #54a9e1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    height: 70vh;
+    min-width: 200px;
+}

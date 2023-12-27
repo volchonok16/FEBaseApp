@@ -1,5 +1,7 @@
 // import { Navigate } from 'react-router-dom'
 
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
+
 import css from './auth.module.scss'
 import { AuthForm } from './components/authForm/MyAuthForm'
 
@@ -14,11 +16,15 @@ export const AuthLayout = () => {
 
   return (
     <div className="container py-4 px-3 mx-auto">
-      <section className={css.authLayout__wrapper}>
-        <ErrorBoundary>
+    <section className={css.authLayout__wrapper}>
+      <ErrorBoundary>
+        <GoogleReCaptchaProvider
+          reCaptchaKey={process.env.REACT_APP_SITE_KEY as string}
+        >
           <AuthForm />
-        </ErrorBoundary>
-      </section>
+        </GoogleReCaptchaProvider>
+      </ErrorBoundary>
+    </section>
     </div>
   )
 }

@@ -70,7 +70,10 @@ export const ModalWindow: FC<PropsType> = ({
     resolver: zodResolver(modalFormSchema),
   })
 
-  const onSubmit: SubmitHandler<FormInputType> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<FormInputType> = (data) => {
+    console.log(data)
+    closeModal()
+  }
 
   return (
     <Modal

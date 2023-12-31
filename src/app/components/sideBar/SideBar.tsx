@@ -3,31 +3,35 @@ import { useNavigate } from 'react-router-dom'
 
 import css from './sideBar.module.scss'
 
-import arrowLeft from 'assets/arrow-left.svg'
-import arrowRight from 'assets/arrow-right.svg'
-import logout from 'assets/logout.svg'
-import profile from 'assets/profile.svg'
-import services from 'assets/services.svg'
-import settings from 'assets/settings.svg'
+// import { ReactComponent as Logout } from 'assets/logout.svg' // нужно импортировать как компоненту, чтобы менять цвет иконки
+// import { ReactComponent as Profile } from 'assets/profile.svg'
+// import { ReactComponent as Services } from 'assets/services.svg'
+// import { ReactComponent as Settings } from 'assets/settings.svg'
+import { Icon } from 'common/components/Icon'
 
-export const SideBar: FC = () => {
+type PropsType = {
+  setIsDarkTheme: (isDarkTheme: boolean) => void
+  isDarkTheme: boolean
+}
+
+export const SideBar: FC<PropsType> = ({ setIsDarkTheme, isDarkTheme }) => {
   const menuItems = [
     {
       id: 1,
       title: 'Профиль',
-      img: profile,
+      svg: 'Profile',
       path: 'owner',
     },
     {
       id: 2,
       title: 'Настройки',
-      img: settings,
+      svg: 'Settings',
       path: '/',
     },
     {
       id: 3,
       title: 'Сервисы',
-      img: services,
+      svg: 'Services',
       path: '/',
     },
   ]
@@ -48,10 +52,10 @@ export const SideBar: FC = () => {
   return (
     <>
       <div className="col-auto">
-        <nav className="d-flex flex-column align-items-stretch p-3 rounded-4 bg-white h-100">
+        <nav className="d-flex flex-column align-items-stretch p-3 rounded-4 bg-body h-100">
           <div
             role="button"
-            className="d-flex flex-column align-items-start h-25 me-md-auto text-black text-decoration-none"
+            className="d-flex flex-column align-items-start h-25 me-md-auto text-body text-decoration-none"
           >
             <span
               className={`${css.logo} mx-1 d-none 
@@ -60,16 +64,13 @@ export const SideBar: FC = () => {
               АТП-Онлайн
             </span>
             <span
-              className={`${css.name} mx-1 d-none 
+              className={`${css.name} mx-1 d-none text-body 
               ${isMenu ? 'd-lg-inline' : ''}`}
             >
               Личный кабинет
             </span>
           </div>
-          <ul
-            className="nav nav-pills flex-grow-1 flex-column align-items-start"
-            id="menu"
-          >
+          <ul className="nav nav-pills flex-column align-items-start" id="menu">
             {menuItems.map((item) => (
               <li
                 className="nav-item"
@@ -78,14 +79,19 @@ export const SideBar: FC = () => {
               >
                 <div
                   role="button"
-                  className={`nav-link 
+                  className={`nav-link
                   ${activeItem === item.id ? 'active' : ''} 
                   align-middle p-1 my-1`}
                 >
-                  <img src={item.img} className={css.icon} alt={item.title} />
+                  <div className={css.icon}>
+                    <Icon iconName={item.svg} />
+                    {/* {item.svg === 'Profile' && <Profile />}
+                    {item.svg === 'Settings' && <Settings />}
+                    {item.svg === 'Services' && <Services />} */}
+                  </div>
                   <span
                     className={
-                      'mx-2 text-black d-none ' + (isMenu ? 'd-lg-inline' : '')
+                      'mx-2 d-none text-body ' + (isMenu ? 'd-lg-inline' : '')
                     }
                   >
                     {item.title}
@@ -95,23 +101,37 @@ export const SideBar: FC = () => {
             ))}
           </ul>
 
-          <div className="pb-4">
+          <div className="mt-auto pb-2">
             <div
               role="button"
-              className="d-flex p-1 my-1 text-black text-decoration-none"
+              className="d-flex p-1 my-1 text-body text-decoration-none"
               onClick={() => handleActiveItem(null, '/')}
             >
-              <img src={logout} alt="logout" className={css.icon} />
+              <div className={css.icon}>
+                <Icon iconName="Logout" />
+              </div>
+
               <span className={'mx-2 d-none ' + (isMenu ? 'd-lg-inline' : '')}>
                 Выход
               </span>
             </div>
           </div>
+          <div className="mt-3 pb-2">
+            <div className={'mx-2 d-none ' + (isMenu ? 'd-lg-inline' : '')}>
+              <input
+                type="checkbox"
+                id="theme"
+                name="theme"
+                onChange={() => setIsDarkTheme(!isDarkTheme)}
+              />
+              <label htmlFor="theme"> Темная тема</label>
+            </div>
+          </div>
         </nav>
       </div>
       <div className={css.arrow_wrapper}>
-        <div className={css.arrow}>
-          <img src={isMenu ? arrowLeft : arrowRight} onClick={hideMenu} />
+        <div className={isMenu ? css.curl_inside : css.curl_outside}>
+          <div className={css.curl} onClick={hideMenu}></div>
         </div>
       </div>
     </>

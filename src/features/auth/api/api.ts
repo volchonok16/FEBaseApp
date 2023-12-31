@@ -11,7 +11,8 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://adjnatec.ru:4300',
-    // baseUrl: 'https://1f5355cf495c2717cf8ac8fbab1c86b0.serveo.net',
+    // baseUrl: 'https://4e977b58a9d176848516ced5455ade93.serveo.net',
+
     credentials: 'include',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token')
@@ -43,15 +44,7 @@ export const authApi = createApi({
         }
       },
     }),
-    // вход в приложение через Яндекс
-    // loginYandex: builder.query<unknown, void>({
-    //   query: () => {
-    //     return {
-    //       method: 'GET',
-    //       url: `auth/yandex/signin`,
-    //     }
-    //   },
-    // }),
+
     // // выход из приложения
     // logout: builder.mutation<unknown, void>({
     //   query: () => {

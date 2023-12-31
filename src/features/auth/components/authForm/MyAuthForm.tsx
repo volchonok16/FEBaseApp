@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useState, FC } from 'react'
+import { useState, FC, useCallback } from 'react'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import { useForm } from 'react-hook-form'
 
@@ -22,6 +23,8 @@ export const AuthForm: FC = () => {
     useLoginMutation()
   const [signUp, { isLoading: isSignUpLoading }] = useSignUpMutation()
 
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
   const {
     register,
     handleSubmit,
@@ -31,25 +34,39 @@ export const AuthForm: FC = () => {
     mode: 'onBlur',
   })
 
-  const onClickSubmitHandler = async (data: SignInDataType) => {
-    try {
-      if (data.password) {
-        await login(data as LoginDataType)
-          .unwrap()
-          .then((res: LoginResponseDataType) => {
-            localStorage.setItem('token', res.accessToken)
-          })
-      } else {
-        await signUp(data)
-          .unwrap()
-          .then((res) => {
-            console.log(res?.password)
-            setIsShowPasswordField(true)
-          })
+  const onClickSubmitHandler = useCallback(
+    async (data: SignInDataType) => {
+      if (!executeRecaptcha) {
+        console.log('Execute recaptcha not yet available')
+        return
       }
-    } catch (err) {
-      console.error('LoginError:', err)
-    }
+      const reCaptchaToken = await executeRecaptcha('auth')
+      console.log('reCaptchaToken: ', reCaptchaToken)
+      try {
+        if (data.password) {
+          await login(data as LoginDataType)
+            .unwrap()
+            .then((res: LoginResponseDataType) => {
+              localStorage.setItem('token', res.accessToken)
+            })
+        } else {
+          await signUp(data)
+            .unwrap()
+            .then((res) => {
+              console.log(res?.password)
+              setIsShowPasswordField(true)
+            })
+        }
+      } catch (err) {
+        console.error('LoginError:', err)
+      }
+    },
+    [executeRecaptcha],
+  )
+
+  const handleYandexAuth = async () => {
+    window.location.href =
+      'https://oauth.yandex.ru/authorize?response_type=code&redirect_uri=https://4e977b58a9d176848516ced5455ade93.serveo.net/auth/yandex/redirect&client_id=ca01ec9988c7463fae612b252a1ecb13'
   }
 
   return (
@@ -61,6 +78,7 @@ export const AuthForm: FC = () => {
         <h3 className={css.authForm__title}>Авторизация</h3>
 
         <div className={css.authForm__inputBlock_wrapper}>
+          <div onClick={handleYandexAuth}>Яндекс</div>
           <div className={css.authForm__input_wrapper}>
             <input
               className={

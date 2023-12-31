@@ -1,11 +1,18 @@
-// Пример кастомной темы, пока не используется
-// [data-bs-theme="blue"] {
-//     --bs-body-color: var(--bs-white);
-//     --bs-body-color-rgb: #{to-rgb($white)};
-//     --bs-body-bg: var(--bs-blue);
-//     --bs-body-bg-rgb: #{to-rgb($blue)};
-//     --bs-tertiary-bg: #{$blue-600};
-  
+// Кастомная темная тема
+
+[data-bs-theme="custom"] {
+  --bs-body-color: #{$body-color-custom-dark};
+  --bs-body-color-rgb: #{to-rgb($body-color-custom-dark)};
+  --bs-body-bg: #{$body-bg-custom-dark};
+  --bs-body-bg-rgb: #{to-rgb($body-bg-custom-dark)};
+  --bs-secondary-bg: #{$secondary-bg-custom-dark};
+  --bs-secondary-bg-rgb: #{to-rgb($secondary-bg-custom-dark)};
+
+  .nav-pills {
+    --bs-nav-pills-link-active-bg: #{$active-component-bg-custom-dark};
+  }
+
+    
 //     .dropdown-menu {
 //       --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
 //       --bs-dropdown-link-active-bg: #{$blue-700};
@@ -21,4 +28,4 @@
 //       --bs-btn-focus-border-color: #{rgba($white, 0.5)};
 //       --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, 0.2);
 //     }
-//   }
+   }

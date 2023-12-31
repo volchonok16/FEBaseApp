@@ -16,15 +16,15 @@ export const AuthLayout = () => {
 
   return (
     <div className="container py-4 px-3 mx-auto">
-    <section className={css.authLayout__wrapper}>
-      <ErrorBoundary>
-        <GoogleReCaptchaProvider
-          reCaptchaKey={process.env.REACT_APP_SITE_KEY as string}
-        >
-          <AuthForm />
-        </GoogleReCaptchaProvider>
-      </ErrorBoundary>
-    </section>
+      <section className={css.authLayout__wrapper}>
+        <ErrorBoundary>
+          <GoogleReCaptchaProvider
+            reCaptchaKey={process.env.REACT_APP_SITE_KEY as string}
+          >
+            <AuthForm />
+          </GoogleReCaptchaProvider>
+        </ErrorBoundary>
+      </section>
     </div>
   )
 }
